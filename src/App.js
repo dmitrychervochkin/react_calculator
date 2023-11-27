@@ -51,18 +51,16 @@ export function App(){
 								className={styles.calculatorOperator}
 								onClick={() => {
 									setIsResult(false);
-									let htmlTarget = window.event.target.textContent;
-									if(htmlTarget === 'C'){
+									if(item === 'C'){
 										setOperand1('0');
 										setOperator('');
 										setOperand2('');
-									} else if(htmlTarget === '+' || htmlTarget === '-'){
+									} else if(item === '+' || item === '-'){
 										setOperand1(operand1);
-										setOperator(htmlTarget)
-									} else if (htmlTarget === '='){
+										setOperator(item)
+									} else if (item === '='){
 										setIsResult(true);
 										if(operand2 !== ''){
-
 											switch (operator){
 												case '+': {
 													setOperand1(Number(operand1) + Number(operand2));
@@ -75,7 +73,6 @@ export function App(){
 												default:
 													//
 											};
-
 											setOperand2('');
 										}
 										setOperator('');
@@ -91,113 +88,3 @@ export function App(){
 		</div>
 	);
 };
-
-// export function App() {
-// 	let calculatorNumbers = ['C', '=', '-', '+', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-// 	function isEqual(item) {
-// 		if (item === '=') {
-// 			return ' equal-sign';
-// 		} else if (item === 'C') {
-// 			return ' C-sign';
-// 		} else if (item === '+') {
-// 			return ' operator';
-// 		} else if (item === '-') {
-// 			return ' operator';
-// 		} else {
-// 			return '';
-// 		}
-// 	}
-
-// 	function getHtmlCalculator(number) {
-// 		return (
-// 			<button
-// 				key={String(number)}
-// 				type="button"
-// 				className={'calculator-key' + isEqual(number)}
-// 				onClick={onClick}
-// 				id={String(number)}
-// 			>
-// 				{String(number)}
-// 			</button>
-// 		);
-// 	}
-
-// 	function slicedArray(array) {
-// 		array.reverse();
-// 		const arraySize = 3;
-// 		const slicedArray = [];
-// 		for (let i = 0; i < array.length; i += arraySize) {
-// 			slicedArray.push(array.slice(i, i + arraySize));
-// 		}
-// 	}
-// 	slicedArray(calculatorNumbers);
-
-// 	let numbers = '';
-// 	let num1 = '';
-// 	let num2 = '';
-// 	let operator = '';
-// 	let result = '';
-
-// 	function onClick(event) {
-// 		const calculatorOutput = document.querySelector('.calculator__output');
-// 		calculatorOutput.style.color = 'white';
-// 		calculatorOutput.style.fontWeight = '400';
-// 		calculatorOutput.style.textShadow = '';
-// 		calculatorOutput.style.background = 'black';
-
-// 		calculatorOutput.textContent = numbers;
-
-// 		if (event.target.textContent === 'C') {
-// 			calculatorOutput.textContent = '0';
-// 			numbers = '';
-// 			num1 = '';
-// 			num2 = '';
-// 			operator = '';
-// 		} else if (event.target.textContent === '=') {
-// 			num2 = numbers;
-// 			if (operator === '+') {
-// 				result = Number(num1) + Number(num2);
-// 			} else if (operator === '-') {
-// 				result = Number(num1) - Number(num2);
-// 			}
-// 			calculatorOutput.style.color = 'gold';
-// 			calculatorOutput.style.background = 'black';
-// 			num1 = '';
-// 			num2 = '';
-// 			numbers = '';
-// 			operator = '';
-// 			calculatorOutput.textContent = result || 0;
-// 		} else if (event.target.textContent === '+') {
-// 			num1 = numbers;
-// 			calculatorOutput.textContent = event.target.textContent;
-// 			operator = '+';
-// 			numbers = '';
-// 		} else if (event.target.textContent === '-') {
-// 			num1 = numbers;
-// 			calculatorOutput.textContent = event.target.textContent;
-// 			operator = '-';
-// 			numbers = '';
-// 		} else {
-// 			if (event.target.textContent !== 'C') {
-// 				calculatorOutput.textContent += event.target.textContent;
-// 				numbers += event.target.textContent;
-// 			}
-// 		}
-// 	}
-// 	return (
-// 		<div className="App">
-// 			<header className="App-header">
-// 				<img src={logo} className="App-logo" alt="logo" />
-// 			</header>
-// 			<main className="App-main">
-// 				<div className="calculator__output">0</div>
-// 				<div className="calculator-keys">
-// 					{calculatorNumbers.map((item) => {
-// 						return getHtmlCalculator(item);
-// 					})}
-// 				</div>
-// 			</main>
-// 		</div>
-// 	);
-// }
